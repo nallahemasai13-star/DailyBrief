@@ -37,7 +37,7 @@ function SearchPage() {
         <label htmlFor="q" className="sr-only">Search news</label>
         <div className="relative flex-1">
           <SearchIcon className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" aria-hidden />
-          <input id="q" type="search" value={value} onChange={(e) => setValue(e.target.value)} placeholder="Search for topics, e.g. climate, AI, football" maxLength={100} className="h-12 w-full rounded-full border bg-card pl-11 pr-4 text-base outline-none focus:ring-2 focus:ring-ring" />
+          <input id="q" name="q" type="search" value={value} onChange={(e) => setValue(e.target.value)} placeholder="Search for topics, e.g. climate, AI, football" maxLength={100} className="h-12 w-full rounded-full border bg-card pl-11 pr-4 text-base outline-none focus:ring-2 focus:ring-ring" />
         </div>
         <button type="submit" className="h-12 rounded-full bg-primary px-6 font-semibold text-primary-foreground hover:bg-primary/90">Search</button>
       </form>
