@@ -30,23 +30,22 @@ export function ArticleCard({ article }: { article: Article }) {
     <Link
       to="/article/$id"
       params={{ id: article.id }}
-      className="group flex flex-col overflow-hidden rounded-2xl border bg-card transition hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+      className="group flex flex-col focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
     >
-      <div className="relative aspect-[16/10] overflow-hidden bg-muted">
-        <ArticleImage src={article.image} alt="" className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
-        <BookmarkButton article={article} className="absolute right-3 top-3" />
+      <div className="relative aspect-[16/10] overflow-hidden rounded-lg bg-muted">
+        <ArticleImage src={article.image} alt="" className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]" />
+        <BookmarkButton article={article} className="absolute right-2 top-2" />
       </div>
-      <div className="flex flex-1 flex-col gap-2 p-4">
-        <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
-          <span className="text-primary">{article.source}</span>
-          <span aria-hidden>•</span>
+      <div className="flex flex-1 flex-col gap-2 pt-4">
+        {article.category && (
+          <span className="text-xs font-bold uppercase tracking-widest text-primary">{capitalize(article.category)}</span>
+        )}
+        <h3 className="line-clamp-2-safe text-xl font-semibold leading-snug group-hover:underline group-hover:decoration-1 group-hover:underline-offset-4">{article.title}</h3>
+        {article.description && <p className="line-clamp-2-safe text-sm leading-relaxed text-muted-foreground">{article.description}</p>}
+        <div className="mt-auto pt-1 text-xs text-muted-foreground">
+          <span className="font-semibold text-foreground">{article.source}</span> ·{" "}
           <time dateTime={article.publishedAt}>{formatDate(article.publishedAt)}</time>
-          {article.category && (
-            <span className="ml-auto rounded-full bg-accent px-2 py-0.5 text-accent-foreground">{capitalize(article.category)}</span>
-          )}
         </div>
-        <h3 className="line-clamp-2-safe text-lg font-semibold leading-snug group-hover:text-primary">{article.title}</h3>
-        {article.description && <p className="line-clamp-2-safe text-sm text-muted-foreground">{article.description}</p>}
       </div>
     </Link>
   );
