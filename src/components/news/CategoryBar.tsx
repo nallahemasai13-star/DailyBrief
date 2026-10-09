@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { CATEGORIES, type Category } from "@/lib/news/types";
 import { capitalize } from "@/lib/format";
 
-export function CategoryBar({ active }: { active?: Category }) {
+export function CategoryBar({ active }: { active?: Category | undefined }) {
   const base = "shrink-0 rounded-full border px-4 py-1.5 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
   const on = "border-primary bg-primary text-primary-foreground";
   const off = "bg-card text-foreground hover:border-primary hover:text-primary";

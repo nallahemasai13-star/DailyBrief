@@ -14,7 +14,7 @@ interface NewsApiArticle {
 }
 
 export const fetchNews = createServerFn({ method: "GET" })
-  .inputValidator((input: { category?: string; q?: string }) => {
+  .inputValidator((input: { category?: string | undefined; q?: string | undefined }) => {
     const category = CATEGORIES.includes(input.category as Category)
       ? (input.category as Category)
       : undefined;
