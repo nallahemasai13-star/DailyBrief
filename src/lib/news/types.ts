@@ -13,13 +13,13 @@ export interface Article {
   id: string;
   title: string;
   description: string;
-  content?: string;
+  content?: string | undefined;
   url: string;
   image: string | null;
   source: string;
   author?: string | null;
   publishedAt: string;
-  category?: Category;
+  category?: Category | undefined;
 }
 
 export interface NewsResponse {

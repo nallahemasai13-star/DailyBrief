@@ -3,7 +3,7 @@ import { fetchNews } from "./news.functions";
 import { rememberArticles } from "./store";
 import type { Category } from "./types";
 
-export const newsQuery = (opts: { category?: Category; q?: string }) =>
+export const newsQuery = (opts: { category?: Category | undefined; q?: string | undefined }) =>
   queryOptions({
     queryKey: ["news", opts.category ?? "all", opts.q ?? ""],
     queryFn: async () => {

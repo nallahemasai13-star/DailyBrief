@@ -7,7 +7,7 @@ import { ArticleGrid, EmptyState, ErrorState, GridSkeleton, SampleBanner } from 
 
 export const Route = createFileRoute("/search")({
   validateSearch: (s: Record<string, unknown>): { q?: string } =>
-    typeof s.q === "string" && s.q.trim() ? { q: s.q.trim() } : {},
+    typeof s["q"] === "string" && s["q"].trim() ? { q: s["q"].trim() } : {},
   head: () => ({
     meta: [
       { title: "Search news — DailyBrief" },

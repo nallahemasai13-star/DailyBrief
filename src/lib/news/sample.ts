@@ -22,7 +22,7 @@ export const SAMPLE_ARTICLES: Article[] = raw.map(({ seed, ...a }) => ({
   content: `${a.description} This is a sample article shown because no news API key is configured.`,
 }));
 
-export function filterSample(opts: { category?: Category; q?: string }): Article[] {
+export function filterSample(opts: { category?: Category | undefined; q?: string | undefined }): Article[] {
   let list = SAMPLE_ARTICLES;
   if (opts.category) list = list.filter((a) => a.category === opts.category);
   if (opts.q) {

@@ -10,7 +10,7 @@ import { Newspaper } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   validateSearch: (s: Record<string, unknown>): { category?: Category } =>
-    CATEGORIES.includes(s.category as Category) ? { category: s.category as Category } : {},
+    CATEGORIES.includes(s["category"] as Category) ? { category: s["category"] as Category } : {},
   head: () => ({
     meta: [
       { title: "DailyBrief — Today's top news, beautifully curated" },
