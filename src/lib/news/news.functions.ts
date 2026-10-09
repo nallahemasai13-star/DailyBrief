@@ -37,12 +37,20 @@ export const fetchNews = createServerFn({ method: "GET" })
       if (data.category) params.set("category", data.category);
     }
 
-    const res = await fetch(`https://newsapi.org/v2/${endpoint}?${params}`, {
-      headers: { "X-Api-Key": key, "User-Agent": "DailyBrief/1.0" },
-    });
-    const json = (await res.json()) as { status: string; message?: string; articles?: NewsApiArticle[] };
+    let res: Response;
+    let json: { status: string; code?: string; message?: string; articles?: NewsApiArticle[] };
+    try {
+      res = await fetch(`https://newsapi.org/v2/${endpoint}?${params}`, {
+        headers: { "X-Api-Key": key, "User-Agent": "DailyBrief/1.0" },
+      });
+      json = await res.json();
+    } catch (e) {
+      console.error("NewsAPI request failed", e);
+      throw new Error("The news service can't be reached right now. Please try again shortly.");
+    }
     if (!res.ok || json.status !== "ok") {
-      throw new Error(json.message || `News service error (${res.status})`);
+      console.error("NewsAPI error", res.status, json.code, json.message);
+      throw new Error(friendlyError(res.status, json.code));
     }
 
     const articles: Article[] = (json.articles ?? [])
