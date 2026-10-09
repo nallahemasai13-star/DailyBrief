@@ -5,9 +5,9 @@ import { ArticleCard } from "./ArticleCard";
 
 export function CardSkeleton() {
   return (
-    <div className="overflow-hidden rounded-2xl border bg-card" aria-hidden>
-      <div className="aspect-[16/10] animate-pulse bg-muted" />
-      <div className="space-y-3 p-4">
+    <div aria-hidden>
+      <div className="aspect-[16/10] animate-pulse rounded-lg bg-muted" />
+      <div className="space-y-3 pt-4">
         <div className="h-3 w-1/3 animate-pulse rounded bg-muted" />
         <div className="h-5 w-full animate-pulse rounded bg-muted" />
         <div className="h-5 w-2/3 animate-pulse rounded bg-muted" />
@@ -18,7 +18,7 @@ export function CardSkeleton() {
 
 export function GridSkeleton({ count = 6 }: { count?: number }) {
   return (
-    <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3" role="status" aria-label="Loading articles">
+    <div className="grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3" role="status" aria-label="Loading articles">
       {Array.from({ length: count }).map((_, i) => <CardSkeleton key={i} />)}
     </div>
   );
@@ -26,7 +26,7 @@ export function GridSkeleton({ count = 6 }: { count?: number }) {
 
 export function ArticleGrid({ articles }: { articles: Article[] }) {
   return (
-    <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
       {articles.map((a) => <ArticleCard key={a.id} article={a} />)}
     </div>
   );
